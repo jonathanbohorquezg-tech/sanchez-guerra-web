@@ -92,7 +92,7 @@
     setTimeout(entrar, 2150);
     setTimeout(function () { raiz.classList.remove('con-intro'); }, 2950);
   } else {
-    w.requestAnimationFrame(function () { w.requestAnimationFrame(entrar); });
+    setTimeout(entrar, 90);   // con temporizador (no con rAF): también corre si la pestaña abre en segundo plano
   }
 
   /* ── Cifras que cuentan ── */

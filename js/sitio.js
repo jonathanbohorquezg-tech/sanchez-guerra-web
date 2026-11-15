@@ -192,7 +192,8 @@
         'Nombre: ' + v('nombre') + '\n' +
         'Teléfono: ' + v('telefono') + '\n' +
         (v('correo') ? 'Correo: ' + v('correo') + '\n' : '') +
-        'Asunto: ' + v('asunto') + '\n\n' + v('mensaje');
+        'Asunto: ' + v('asunto') + '\n\n' + v('mensaje') +
+        (form.elements['como'] && v('como') ? '\n\nNos conoció por: ' + v('como') : '');
       var wa = 'https://wa.me/' + form.dataset.whatsapp + '?text=' + encodeURIComponent(texto);
       var estado = d.getElementById('form-estado');
       var extra = '';

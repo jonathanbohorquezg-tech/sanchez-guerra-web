@@ -1,11 +1,11 @@
 /* SELECTOR DE LOGO Y COLOR — solo mientras los socios deciden.
    Se elimina del sitio al ejecutar:  python3 construir.py --final        */
 (function () {
-  var datos = {"logos": [{"id": "D", "nombre": "La Salida"}, {"id": "F", "nombre": "El Sello"}, {"id": "J", "nombre": "El Eclipse"}], "paletas": [{"id": "1", "nombre": "Tinta & Lacre", "color": "#15130F", "color2": "#B4231A"}, {"id": "2", "nombre": "Borgoña & Cobre", "color": "#2A0E13", "color2": "#A4491F"}, {"id": "3", "nombre": "Petróleo & Coral", "color": "#0B2A2F", "color2": "#C23D2A"}, {"id": "4", "nombre": "Esmeralda & Marfil", "color": "#0B2A20", "color2": "#0E7C57"}, {"id": "5", "nombre": "Grafito & Cobalto", "color": "#13161C", "color2": "#1D46E0"}]};
+  var datos = {"logos": [{"id": "D", "nombre": "La Salida"}], "paletas": [{"id": "1", "nombre": "Tinta & Lacre", "color": "#15130F", "color2": "#B4231A"}, {"id": "2", "nombre": "Petróleo & Coral", "color": "#0B2A2F", "color2": "#C23D2A"}, {"id": "3", "nombre": "Tinta & Coral", "color": "#15130F", "color2": "#C23D2A"}, {"id": "4", "nombre": "Petróleo & Lacre", "color": "#0B2A2F", "color2": "#B4231A"}]};
   var d = document, raiz = d.documentElement;
   var abrir = d.createElement('button');
   abrir.type = 'button'; abrir.className = 'vp-abrir'; abrir.setAttribute('aria-expanded', 'false');
-  abrir.innerHTML = '<i></i><i></i><span>Logo y color</span>';
+  abrir.innerHTML = '<i></i><i></i><span>' + (datos.logos.length > 1 ? 'Logo y color' : 'Color') + '</span>';
   var caja = d.createElement('div');
   caja.className = 'vp'; caja.hidden = true;
   function fila(titulo, clave, opciones) {
@@ -17,7 +17,7 @@
     return h + '</div>';
   }
   caja.innerHTML = '<button type="button" class="cerrar" aria-label="Cerrar">×</button><b>Vista previa de marca</b>' +
-    fila('Logo', 'logo', datos.logos) + fila('Paleta', 'paleta', datos.paletas) +
+    (datos.logos.length > 1 ? fila('Logo', 'logo', datos.logos) : '') + fila('Paleta', 'paleta', datos.paletas) +
     '<small>Panel de revisión: no aparecerá en el sitio definitivo.</small>';
   d.body.appendChild(abrir); d.body.appendChild(caja);
   function pintar() {

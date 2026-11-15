@@ -4,8 +4,8 @@
  "lang": "es-CO",
  "start_url": "/",
  "display": "browser",
- "background_color": "#0B2A20",
- "theme_color": "#0B2A20",
+ "background_color": "#0B2A2F",
+ "theme_color": "#0B2A2F",
  "icons": [
   {
    "src": "/img/icono-192.png",

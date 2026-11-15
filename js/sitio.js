@@ -1,7 +1,7 @@
 /* Sánchez & Guerra — comportamiento y movimiento del sitio (sin dependencias) */
 (function () {
   var d = document, raiz = d.documentElement, w = window;
-  var quieto = w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var quieto = raiz.classList.contains('quieto') || (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function todos(sel, ctx) { return Array.prototype.slice.call((ctx || d).querySelectorAll(sel)); }
 
   /* ── Menú móvil ── */
@@ -80,6 +80,8 @@
   } else revelables.forEach(mostrar);
   // Red de seguridad: nada queda oculto si algo falla
   setTimeout(function () { revelables.forEach(function (el) { if (el.getBoundingClientRect().top < w.innerHeight) mostrar(el); }); }, 3200);
+
+  if (quieto) revelables.forEach(mostrar);
 
   /* ── Portada: entra después de la presentación inicial ── */
   var portada = d.querySelector('.portada, .cab-pagina');
@@ -163,6 +165,19 @@
       ret.addEventListener('mouseleave', function () { ret.style.setProperty('--rx', 0); ret.style.setProperty('--ry', 0); });
     });
   }
+
+  /* ── Blog: filtro por tema ── */
+  var filtros = todos('.filtro');
+  filtros.forEach(function (b) {
+    b.addEventListener('click', function () {
+      filtros.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      var tema = b.dataset.tema;
+      todos('[data-tema]').forEach(function (el) {
+        if (el.classList.contains('filtro')) return;
+        el.hidden = !(tema === 'todos' || el.dataset.tema === tema);
+      });
+    });
+  });
 
   /* ── Año del pie ── */
   todos('[data-anio]').forEach(function (el) { el.textContent = new Date().getFullYear(); });

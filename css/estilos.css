@@ -13,8 +13,8 @@
   --cita-peso: 400;
   --t-cursiva: italic;
   --logo-acento-2: var(--acento-claro);
-  --ancho: 1240px;
-  --margen: clamp(20px, 5vw, 64px);
+  --ancho: clamp(1240px, 80vw, 1600px);
+  --margen: clamp(20px, 5vw, 80px);
   /* colores "de contexto": cambian solos dentro de una sección oscura */
   --fondo: var(--papel);
   --texto: var(--tinta);
@@ -26,7 +26,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 96px; }
+html { font-size: clamp(16px, .5vw + 10px, 20px); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 110px; }
 body {
   margin: 0; background: var(--papel); color: var(--tinta);
   font: 400 1.0625rem/1.65 var(--f-texto);
@@ -43,7 +43,7 @@ h1, h2, h3, h4 { font-family: var(--f-titulos); font-weight: var(--t-peso); lett
 .punto { color: var(--a); }
 
 .contenedor { width: min(100% - 2 * var(--margen), var(--ancho)); margin-inline: auto; }
-.seccion { padding-block: clamp(64px, 9vw, 132px); background: var(--fondo); color: var(--texto); }
+.seccion { padding-block: clamp(4rem, 7.2vw, 8rem); background: var(--fondo); color: var(--texto); }
 .oscura {
   --fondo: var(--tinta); --texto: var(--papel); --a: var(--acento-claro);
   --borde: color-mix(in srgb, var(--papel) 18%, transparent); --tenue: var(--suave-oscuro);
@@ -57,7 +57,7 @@ h1, h2, h3, h4 { font-family: var(--f-titulos); font-weight: var(--t-peso); lett
 /* ── piezas tipográficas ── */
 .antetitulo {
   display: inline-flex; align-items: center; gap: 12px;
-  font: 600 .78rem/1.2 var(--f-texto); letter-spacing: .18em; text-transform: uppercase; color: var(--tenue);
+  font: 600 .82rem/1.2 var(--f-texto); letter-spacing: .18em; text-transform: uppercase; color: var(--tenue);
   margin: 0 0 22px;
 }
 .antetitulo::before { content: ""; width: 28px; height: 2px; background: var(--a); flex: none; }
@@ -88,19 +88,20 @@ h1, h2, h3, h4 { font-family: var(--f-titulos); font-weight: var(--t-peso); lett
 
 /* ── cabecera ── */
 .cabecera { z-index: 50; background: color-mix(in srgb, var(--papel) 94%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); }
-.cabecera .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
+.cabecera .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: clamp(78px, 5.4vw, 104px); }
 .marca { display: flex; align-items: center; text-decoration: none; flex: none; }
 .marca svg { width: auto; }
-.marca svg { height: 44px; }
+.marca svg { height: clamp(50px, 3.5vw, 68px); }
 .nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 34px); }
-.nav a { font: 500 .95rem/1 var(--f-texto); text-decoration: none; padding: 8px 0; position: relative; }
+.nav a { font: 500 1rem/1 var(--f-texto); text-decoration: none; padding: 8px 0; position: relative; }
 .nav a:not(.boton)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 2px; background: var(--acento); transition: right .2s ease; }
 .nav a:not(.boton):hover::after, .nav a[aria-current="page"]::after { right: 0; }
 .nav a:not(.boton):hover { color: inherit; }
-.nav .boton { padding: 12px 18px; font-size: .86rem; }
+.nav .boton { padding: .8rem 1.25rem; font-size: .92rem; }
 .menu-boton { display: none; background: none; border: 0; padding: 10px; margin-right: -10px; cursor: pointer; color: inherit; }
 .menu-boton span { display: block; width: 26px; height: 2px; background: currentColor; margin: 6px 0; transition: transform .2s ease, opacity .2s ease; }
-@media (max-width: 940px) {
+@media (max-width: 1200px) {
+  .marca svg { height: 40px; }
   .menu-boton { display: block; }
   .nav { position: fixed; inset: 78px 0 0 0; background: var(--papel); flex-direction: column; align-items: flex-start; gap: 0; padding: 12px var(--margen) 40px; transform: translateX(100%); transition: transform .25s ease; overflow: auto; }
   .nav a:not(.boton) { font: var(--t-peso) 1.9rem/1.1 var(--f-titulos); letter-spacing: var(--t-tracking); padding: 18px 0; width: 100%; border-bottom: 1px solid var(--linea); }
@@ -373,8 +374,8 @@ h1 em, h2 em { font-weight: 500; }
 .js .cabecera:not(.solida) .nav a:not(.boton):hover { color: inherit; }
 .cabecera.oculta { transform: translateY(-101%); }
 .menu-abierto .cabecera { background: var(--papel) !important; color: var(--tinta) !important; transform: none !important; --logo-tinta: var(--tinta) !important; --logo-acento: var(--acento) !important; --logo-acento-2: var(--acento-claro) !important; }
-.portada { padding-top: calc(clamp(56px, 8vw, 120px) + 78px); min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; }
-.cab-pagina { padding-top: calc(clamp(48px, 7vw, 104px) + 78px); }
+.portada { padding-top: calc(clamp(3.5rem, 6vw, 8rem) + clamp(78px, 5.4vw, 104px)); min-height: min(100svh, 1100px); display: flex; flex-direction: column; justify-content: flex-end; }
+.cab-pagina { padding-top: calc(clamp(3rem, 5.5vw, 7rem) + clamp(78px, 5.4vw, 104px)); }
 @media (max-width: 940px) { .nav { color: var(--tinta); } }
 
 /* — fondo vivo de las secciones de portada — */
@@ -475,4 +476,63 @@ html[data-logo="F"] .retrato .iniciales { letter-spacing: -.02em; left: 2%; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
 @media print { .progreso, .intro, .cinta, .fondo-vivo, .bajar { display: none !important; } }
+
+/* ═══ Ajustes de pantalla grande y encabezados de sección ═══ */
+.encabezado { align-items: end; gap: 2rem 4rem; }
+.encab-lado { display: grid; gap: 1.2rem; justify-items: start; max-width: 32em; }
+.encab-texto { margin: 0; color: var(--tenue); font-size: 1.04rem; line-height: 1.6; }
+@media (max-width: 860px) { .encab-texto { display: none; } }
+@media (min-width: 1100px) { .socios .retrato { aspect-ratio: 5 / 4.1; } }
+@media (min-width: 1500px) { .entrada { max-width: 34em; } .portada-rejilla { gap: clamp(3rem, 6vw, 7rem); } }
+
+/* ═══ Modo ?quieto: todo visible, sin animaciones (revisión, impresión, accesibilidad) ═══ */
+.quieto .pal > span, .quieto .sube, .quieto .escalonar > *, .quieto .revelar { opacity: 1 !important; transform: none !important; transition: none !important; }
+.quieto .pz { opacity: 1; }
+.quieto .mancha, .quieto .grano, .quieto .ondas i, .quieto .cinta-pista, .quieto .marca-agua svg, .quieto .banda::before { animation: none !important; }
+
+/* ═══ Secciones: título a la izquierda, texto de apoyo y enlace a la derecha ═══ */
+@media (min-width: 900px) {
+  .encabezado { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: end; gap: 2rem clamp(3rem, 6vw, 8rem); }
+  .encabezado h2 { max-width: none; }
+}
+.bajar { display: none; }
+
+/* ═══ Retratos: las iniciales escalan con la caja; en escritorio, tarjeta horizontal ═══ */
+.retrato { container-type: inline-size; }
+.retrato .iniciales { font-size: 64cqw; line-height: .8; }
+@media (min-width: 1100px) {
+  .socios .socio { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(1.5rem, 2.6vw, 2.8rem); align-items: center; }
+  .socios .retrato, .socios .retrato.sin-foto { aspect-ratio: 1 / 1.1; margin: 0; }
+}
+
+/* ═══ Blog ═══ */
+.destacado { display: grid; gap: 1.1rem; padding: clamp(1.8rem, 3.4vw, 3.4rem); background: var(--tinta); color: var(--papel); text-decoration: none; margin-bottom: clamp(2rem, 3vw, 3rem); position: relative; overflow: hidden; isolation: isolate; --a: var(--acento-claro); }
+.destacado::after { content: ""; position: absolute; width: 38rem; height: 38rem; right: -12rem; top: -16rem; border-radius: 50%; background: color-mix(in srgb, var(--acento) 55%, transparent); filter: blur(80px); opacity: .45; z-index: -1; }
+.dest-meta { display: flex; justify-content: space-between; gap: 1rem; font: 600 .76rem/1.3 var(--f-texto); letter-spacing: .15em; text-transform: uppercase; color: var(--acento-claro); }
+.dest-meta span:last-child { color: var(--suave-oscuro); }
+.destacado h2 { max-width: 20em; }
+.destacado p { max-width: 44em; margin: 0; color: var(--suave-oscuro); font-size: 1.1rem; }
+.destacado:hover { color: var(--papel); } .destacado:hover h2 { color: var(--acento-claro); }
+.filtros { display: flex; flex-wrap: wrap; gap: .6rem; margin: 0 0 clamp(1.8rem, 3vw, 2.6rem); }
+.filtro { font: 600 .86rem/1 var(--f-texto); padding: .75rem 1.15rem; border: 1.5px solid var(--borde); background: transparent; color: var(--texto); cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.filtro:hover { border-color: var(--texto); }
+.filtro[aria-pressed="true"] { background: var(--tinta); color: var(--papel); border-color: var(--tinta); }
+.lista-blog { row-gap: clamp(2.4rem, 4vw, 4rem); }
+[data-tema][hidden] { display: none !important; }
+.n-fuentes { display: inline-block; align-self: flex-start; margin-bottom: 1rem; font: 600 .72rem/1 var(--f-texto); letter-spacing: .12em; text-transform: uppercase; color: var(--a); border: 1px solid var(--a); padding: .45rem .6rem; }
+.articulo .juris { border-left: 3px solid var(--a); background: var(--superficie); padding: 1.1rem 1.4rem 1.2rem; margin: 1.8em 0; }
+.articulo .juris b { display: block; font: var(--t-peso) 1.06rem/1.3 var(--f-titulos); letter-spacing: var(--t-tracking); }
+.articulo .juris p { margin: .45em 0 0; font-size: .98rem; line-height: 1.55; color: var(--tenue); }
+.fuentes { margin-top: 3.6rem; border-top: 2px solid var(--texto); padding-top: 1.6rem; }
+.fuentes h2 { font-size: 1.5rem; margin: 0 0 1rem; }
+.fuentes li { padding: .95rem 0; border-bottom: 1px solid var(--borde); display: grid; gap: .2rem; }
+.fuentes li a, .fuentes li b { font-weight: 600; }
+.fuentes li span { color: var(--tenue); font-size: .95rem; line-height: 1.5; }
+.aviso-fuentes { font-size: .88rem; color: var(--tenue); margin: 1.2rem 0 0; }
+.borrador { margin-left: 1.2rem; align-self: center; font: 700 .68rem/1 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; padding: .5rem .7rem; border: 1px solid var(--acento-claro); color: var(--acento-claro); }
+
+/* ═══ Retrato tipográfico completo y logo ajustado en celulares ═══ */
+.retrato .iniciales { left: 7%; bottom: 5%; color: color-mix(in srgb, var(--papel) 15%, var(--tinta)); }
+.socio:hover .retrato .iniciales { color: var(--acento); }
+@media (max-width: 560px) { .marca svg { height: 34px; } }
 

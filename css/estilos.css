@@ -593,3 +593,10 @@ p, li { text-wrap: pretty; }
 }
 @media print { .barra-movil { display: none !important; } }
 
+/* ═══ Retratos con foto: blanco y negro sobre fondo de estudio, teñidos por la paleta ═══ */
+.retrato:not(.sin-foto) { background: var(--papel); }
+.retrato:not(.sin-foto) img { display: block; object-position: 50% 20%; filter: none; mix-blend-mode: multiply; }
+.socio:hover .retrato:not(.sin-foto) img { filter: none; transform: scale(1.035); }
+.retrato:not(.sin-foto) .rol { display: none; }   /* el cargo ya está en el texto; sobre la foto pisaría el pelo */
+.retrato:not(.sin-foto)::after { background: var(--acento); }
+

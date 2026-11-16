@@ -600,3 +600,50 @@ p, li { text-wrap: pretty; }
 .retrato:not(.sin-foto) .rol { display: none; }   /* el cargo ya está en el texto; sobre la foto pisaría el pelo */
 .retrato:not(.sin-foto)::after { background: var(--acento); }
 
+
+/* ═══ Logo de cabecera con «ABOGADOS PENALISTAS» debajo del nombre (15 nov 2026) ═══ */
+.marca svg { height: clamp(40px, 2.55vw, 50px); }
+@media (max-width: 1200px) { .marca svg { height: 36px; } }
+@media (max-width: 560px) { .marca svg { height: min(30px, 7.6vw); } }
+
+/* ═══ Idioma y modo oscuro: controles de la cabecera (16 nov 2026) ═══ */
+.cabecera .marca { margin-right: auto; }
+.nav { order: 1; }
+.cab-util { order: 2; display: flex; align-items: center; gap: 8px; }
+.menu-boton { order: 3; }
+.idioma, .modo-boton { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; border: 1px solid color-mix(in srgb, currentColor 32%, transparent); border-radius: 999px; background: none; color: inherit; text-decoration: none; cursor: pointer; transition: border-color .2s ease, background .2s ease; }
+.idioma { padding: 0 12px; font: 600 .78rem/1 var(--f-texto); letter-spacing: .12em; }
+.modo-boton { width: 40px; padding: 0; }
+.idioma:hover, .modo-boton:hover { border-color: currentColor; color: inherit; }
+.modo-boton svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.modo-boton .luna { display: none; }
+html[data-modo="oscuro"] .modo-boton .luna { display: block; }
+html[data-modo="oscuro"] .modo-boton .sol, html[data-modo="oscuro"] .modo-boton .rayos { display: none; }
+@media (max-width: 1200px) { .cab-util { gap: 6px; } .idioma, .modo-boton { height: 36px; min-width: 36px; } .modo-boton { width: 36px; } }
+@media (max-width: 380px) { .idioma { padding: 0 9px; } }
+@media print { .cab-util { display: none !important; } }
+
+/* ═══ Modo oscuro ═══
+   La página baja a un petróleo profundo; las piezas oscuras de la marca (portada, cajas, pie) quedan
+   un tono más claras, como paneles. El coral claro hace de acento sobre fondo oscuro. */
+html[data-modo="oscuro"] {
+  color-scheme: dark;
+  --fondo: #081A1D; --texto: #E9E6DD; --a: var(--acento-claro);
+  --borde: rgba(233, 230, 221, .16); --tenue: #97ADAE;
+  --linea: #22393D; --superficie: #0D2428; --suave: #97ADAE;
+  --logo-tinta: #E9E6DD; --logo-acento: var(--acento-claro);
+}
+html[data-modo="oscuro"] body { background: var(--fondo); color: var(--texto); }
+html[data-modo="oscuro"] .cabecera { background: color-mix(in srgb, #081A1D 92%, transparent); }
+html[data-modo="oscuro"] .cabecera.solida { background: color-mix(in srgb, #081A1D 80%, transparent); }
+html[data-modo="oscuro"] .menu-abierto .cabecera { background: #081A1D !important; color: #E9E6DD !important; --logo-tinta: #E9E6DD !important; --logo-acento: var(--acento-claro) !important; }
+@media (max-width: 1200px) { html[data-modo="oscuro"] .nav { background: #081A1D; color: #E9E6DD; } }
+html[data-modo="oscuro"] .cinta { background: var(--fondo); }
+html[data-modo="oscuro"] .cinta span { color: var(--texto); }
+html[data-modo="oscuro"] .publicos { border-top-color: var(--texto); }
+html[data-modo="oscuro"] .filtro[aria-pressed="true"] { background: var(--texto); color: var(--fondo); border-color: var(--texto); }
+html[data-modo="oscuro"] .caja:not(.descarga), html[data-modo="oscuro"] .guia-descarga, html[data-modo="oscuro"] .destacado { box-shadow: inset 0 0 0 1px rgba(233, 230, 221, .09); }
+html[data-modo="oscuro"] .boton.inverso:hover { background: #081A1D; border-color: #081A1D; }
+html[data-modo="oscuro"] .retrato:not(.sin-foto) img { filter: brightness(.94); }
+html[data-modo="oscuro"] input[type=text], html[data-modo="oscuro"] input[type=tel], html[data-modo="oscuro"] input[type=email], html[data-modo="oscuro"] select, html[data-modo="oscuro"] textarea { color: var(--texto); }
+html[data-modo="oscuro"] select option { background: #0D2428; color: #E9E6DD; }

@@ -204,4 +204,28 @@
       w.open(wa, '_blank', 'noopener');
     });
   }
+
+  /* ── Modo claro / oscuro: recuerda la elección; si no hay, sigue la del sistema ── */
+  var modo = d.querySelector('.modo-boton');
+  if (modo) {
+    var raiz = d.documentElement;
+    var pintarModo = function () { modo.setAttribute('aria-pressed', raiz.dataset.modo === 'oscuro' ? 'true' : 'false'); };
+    pintarModo();
+    modo.addEventListener('click', function () {
+      var oscuro = raiz.dataset.modo !== 'oscuro';
+      if (oscuro) raiz.dataset.modo = 'oscuro'; else delete raiz.dataset.modo;
+      try { localStorage.setItem('sg-modo', oscuro ? 'oscuro' : 'claro'); } catch (e) {}
+      pintarModo();
+    });
+    if (window.matchMedia) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var seguir = function (e) {
+        var guardado = null; try { guardado = localStorage.getItem('sg-modo'); } catch (er) {}
+        if (guardado) return;
+        if (e.matches) raiz.dataset.modo = 'oscuro'; else delete raiz.dataset.modo;
+        pintarModo();
+      };
+      if (mq.addEventListener) mq.addEventListener('change', seguir);
+    }
+  }
 })();

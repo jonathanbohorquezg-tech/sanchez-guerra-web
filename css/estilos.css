@@ -147,9 +147,9 @@ h1, h2, h3, h4 { font-family: var(--f-titulos); font-weight: var(--t-peso); lett
 .encabezado h2 { max-width: 15em; }
 
 /* ── áreas ── */
-.areas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--texto); }
+.areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--texto); }
 .area { display: flex; flex-direction: column; padding: 26px 26px 30px 0; min-height: 268px; text-decoration: none; border-bottom: 1px solid var(--borde); position: relative; transition: background .22s ease, color .22s ease, padding .22s ease; }
-.area:nth-child(4n+2), .area:nth-child(4n+3), .area:nth-child(4n+4) { padding-left: 26px; border-left: 1px solid var(--borde); }
+.area:nth-child(3n+2), .area:nth-child(3n+3) { padding-left: 26px; border-left: 1px solid var(--borde); }   /* tres columnas: nueve áreas, 3 × 3 */
 .area .num { font: 600 .8rem/1 var(--f-texto); letter-spacing: .14em; color: var(--a); margin-bottom: 44px; }
 .area h3 { font-size: calc(1.42rem * var(--t-escala)); line-height: 1.12; margin-bottom: 14px; }
 .area p { font-size: .95rem; line-height: 1.5; color: var(--tenue); margin: 0 0 20px; }
@@ -157,8 +157,8 @@ h1, h2, h3, h4 { font-family: var(--f-titulos); font-weight: var(--t-peso); lett
 .area:hover { color: var(--papel); padding-left: 26px; }
 .area:hover p { color: var(--suave-oscuro); }
 .area:hover .num, .area:hover .ir { color: var(--acento-claro); }
-@media (max-width: 1040px) { .areas { grid-template-columns: 1fr 1fr; } .area:nth-child(n) { padding-left: 0; border-left: 0; } .area:nth-child(2n) { padding-left: 26px; border-left: 1px solid var(--borde); } .area:hover { padding-left: 26px; } }
-@media (max-width: 600px) { .areas { grid-template-columns: 1fr; } .area:nth-child(n) { padding-left: 0; border-left: 0; min-height: 0; } .area .num { margin-bottom: 22px; } .area:hover { padding-left: 16px; } }
+@media (max-width: 1040px) { .areas { grid-template-columns: 1fr 1fr; } .area:nth-child(n) { padding-left: 0; border-left: 0; } .area:nth-child(2n) { padding-left: 26px; border-left: 1px solid var(--borde); } .area:last-child:nth-child(odd) { grid-column: 1 / -1; } .area:hover { padding-left: 26px; } }
+@media (max-width: 600px) { .areas { grid-template-columns: 1fr; } .area:nth-child(n) { padding-left: 0; border-left: 0; min-height: 0; grid-column: auto; } .area .num { margin-bottom: 22px; } .area:hover { padding-left: 16px; } }
 
 /* ── método ── */
 .metodo { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(22px, 3vw, 44px); counter-reset: paso; }
